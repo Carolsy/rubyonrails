@@ -1,9 +1,7 @@
-<h1>Showing selected article</h1>
-
+<h3>詳細</h3>
 <p>Title: <%= @article.title %></p>
-
 <p>Description: <%= @article.description %></p>
-<%= link_to "Edit this article", edit_article_path(@article) %> |
-<%= link_to "Back to articles listing", articles_path %>
+<%= link_to "編集", edit_article_path(@article) %> |
+<%= link_to "全部", articles_path %>
 
 
