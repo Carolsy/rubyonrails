@@ -1,11 +1,14 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
-  
+  before_action :set_article, only: %i[show edit update destroy]
+
+  # GET /articles
+  # GET /articles.json
   def index
     @articles = Article.all
   end
 
   def show
+    @article = Article.find(params[:id])
   end
 
   def new
@@ -28,6 +31,7 @@ class ArticlesController < ApplicationController
     
   def update
     if @article.update(article_params)
+      flash[:notice] = 'Article was successfully updated'
       flash[:notice] = "変更しました!"
       redirect_to article_path(@article)
     else
