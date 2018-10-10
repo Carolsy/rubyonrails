@@ -1,8 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
 
-  # GET /articles
-  # GET /articles.json
   def index
     @articles = Article.all
   end
@@ -19,10 +17,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article=Article.new(article_params)
-    @article.user=User.first
+    @article = Article.new(article_params)
+    @article.user = User.first
     if @article.save
-      flash[:notice]="保存しました!"
+      flash[:notice] = "保存しました!"
       redirect_to article_path(@article)
     else
       render 'new'
@@ -31,7 +29,6 @@ class ArticlesController < ApplicationController
     
   def update
     if @article.update(article_params)
-      flash[:notice] = 'Article was successfully updated'
       flash[:notice] = "変更しました!"
       redirect_to article_path(@article)
     else
@@ -41,7 +38,7 @@ class ArticlesController < ApplicationController
 
   def destroy
      @article.destroy
-     flash[:notice]="消しました!"
+     flash[:notice] = "消しました!"
      redirect_to articles_path
   end
 

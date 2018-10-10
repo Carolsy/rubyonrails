@@ -1,9 +1,15 @@
-<h3>全部</h3>
+<h4>全部</h4>
 <% @articles.each do |article| %>
   <%= article.title %>
+  <small>created by: <%= article.user.username if article.user %></small>
+  <small>created at: <%= article.created_at %></small>
+  <small>last updated: <%= article.updated_at %></small>
   <%= link_to '編集', edit_article_path(article) %>
   <%= link_to '詳細', article_path(article) %>
   <%= link_to '消す', article_path(article), method: :delete, data:{confirm: '本当に?'} %>
   <br>
 <% end %>
+<%= link_to '新編', new_article_path %>
+<%= link_to 'Signup', signup_path %>
+<%= link_to 'Bloggers', users_path %>
 
