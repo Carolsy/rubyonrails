@@ -3,6 +3,15 @@
 <h1 align="center">Listing all articles</h1>
 
 <% @articles.each do |article| %>
+  <%= article.title %>
+  <small>created by: <%= article.user.username if article.user %></small>
+  <small>created_at: <%= article.created_at %></small>
+  <small>last updated at: <%= article.updated_at %></small> 
+  <%= link_to '編集', edit_article_path(article) %>
+  <%= link_to '詳細', article_path(article) %>
+  <%= link_to '消す', article_path(article), method: :delete, data:{confirm: '本当に?'} %>
+  <br>
+<% end %>
 
 <div class="row">
 
