@@ -1,12 +1,15 @@
 class ArticlesController < ApplicationController
+
   before_action :set_article, only: %i[show edit update destroy]
+  before_action :require_user, except: %i[index show]
+  before_action :require_same_user, only: %i[edit update destroy]
 
   def index
     @articles = Article.all
   end
 
   def show
-    @article = Article.find(params[:id])
+    #@article = Article.find(params[:id])
   end
 
   def new
@@ -18,7 +21,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.user = User.first
+    @article.user = current_user
     if @article.save
       flash[:notice] = "保存しました!"
       redirect_to article_path(@article)
@@ -26,7 +29,7 @@ class ArticlesController < ApplicationController
       render 'new'
     end
   end
-    
+
   def update
     if @article.update(article_params)
       flash[:notice] = "変更しました!"
@@ -37,9 +40,9 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-     @article.destroy
-     flash[:notice] = "消しました!"
-     redirect_to articles_path
+    @article.destroy
+    flash[:notice] = "消しました!"
+    redirect_to articles_path
   end
 
   private
@@ -50,5 +53,12 @@ class ArticlesController < ApplicationController
 
     def article_params
       params.require(:article).permit(:title, :description)
+    end
+
+    def require_same_user
+      if current_user != @article.user && !current_user.admin?
+        flash[:danger] = "You can only edit or delete your own articles"
+        redirect_to root_path
+      end
     end
 end
