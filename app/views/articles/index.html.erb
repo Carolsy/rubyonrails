@@ -1,3 +1,12 @@
+<%if logged_in? %>
+  <%= "ADMIN" if current_user.admin? %>
+  <a class="dropdown-item" href="#"><li><%= link_to 'Log out', logout_path, method: :delete %></li></a>
+  <a class="dropdown-item" href="#"><li><%= link_to "Edit your profile", edit_user_path(current_user) %></li></a>
+  <a class="dropdown-item" href="#"><li><%= link_to "View your profile", user_path(current_user) %></li></a>
+<% else %>
+  <li><%= link_to 'Log in', login_path %></li>
+  <li><%= link_to 'Sign up', signup_path %></li>
+<% end %>
 <h4>全部</h4>
 <% @articles.each do |article| %>
   <%= article.title %>
