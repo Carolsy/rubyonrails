@@ -1,0 +1,8 @@
+<h4>Create new category</h4>
+<%= form_for @category do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.submit 'Create' %>
+  <%= link_to 'Back', articles_path %>
+<% end %>
+
