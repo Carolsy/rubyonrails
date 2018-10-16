@@ -35,11 +35,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user_articles = @user.articles
+    @user_articles = @user.articles.all
   end
 
   def destroy
-    #@user = User.find(params[:id])
+    @user = User.find(params[:id])
     @user.destroy
     flash[:danger] = 'User and all articles created by user have been deleted'
     redirect_to users_path

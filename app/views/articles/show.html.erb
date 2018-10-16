@@ -2,6 +2,9 @@
 <p>Title: <%= @article.title %></p>
 <p>Description: <%= @article.description %></p>
 created by: <%= link_to @article.user.username, user_path(@article.user) %><br>
+<% if @article.categories.any? %>
+  <p>Category: <%= render @article.categories %></p>
+<% end %>
 <%= link_to "編集", edit_article_path(@article) %> |
 <%= link_to "全部", articles_path %>
 

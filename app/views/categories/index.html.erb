@@ -1,0 +1,6 @@
+
+<h4>All categories</h4>
+<% @categories.each do |category| %>
+  <%= link_to "#{category.name}", category_path(category) %>
+  <small><%= pluralize(category.articles.count, "article") %></small>
+<% end %>
