@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @article_flowers = @article.flowers.all
   end
 
   def new
