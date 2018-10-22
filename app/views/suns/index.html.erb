@@ -1,0 +1,10 @@
+<% if !@suns.empty? %>
+  <% @suns.each do |s| %>
+    Head:<%= s.head_name %><br>
+    Tail:<%= s.tail_name %><br>
+    <%= link_to '詳細', sun_path(s)%>
+    <%= link_to '消す', sun_path(s), method: :delete, data:{confirm: '本当に?'} %>
+  <% end %>
+<% end %>
+
+<%= link_to 'sun_new', new_sun_path %>

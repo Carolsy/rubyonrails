@@ -38,6 +38,11 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails','~> 3.6.0'
   gem 'factory_bot_rails'
+  gem 'capybara', '~> 2.15.2'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
+  gem 'launchy', '~> 2.4.3'
+  gem 'poltergeist'
 end
 
 group :development do
